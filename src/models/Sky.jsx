@@ -1,10 +1,10 @@
 import { useGLTF } from '@react-three/drei'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-
+import skyModel from '../assets/3d/sky.glb'
 
 const Sky = ({ isRotating }) => {
-  const sky = useGLTF('/sky.glb') // path from public folder
+  const sky = useGLTF(skyModel) 
   const skyRef = useRef()
 
   useFrame((_, delta) => {
