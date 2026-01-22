@@ -8,7 +8,7 @@ import RatsModel from '/models/rats.glb'
 import BobakModel from '/models/bobak.glb'
 import stationModel from '/models/station.glb'
 import pcModel from '/models/pc.glb'
-import woodModel from '/models/wood.glb'
+
 
 
 
@@ -35,8 +35,6 @@ export function Island({
   const pcRef = useRef()
   const { scene: pcScene } = useGLTF(pcModel)
 
-  const woodRef = useRef()
-  const { scene: woodScene } = useGLTF(woodModel)
 
 
 
@@ -343,13 +341,7 @@ export function Island({
             <primitive object={pcScene} />
           </group>
 
-          <group
-            ref={woodRef}
-            position={[0, 0, 0]}   // adjust as needed
-            scale={[1, 1, 1]}       // adjust as needed
-          >
-            <primitive object={woodScene} />
-          </group>
+  
 
 
 
