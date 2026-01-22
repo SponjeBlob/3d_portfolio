@@ -4,15 +4,6 @@ import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import RatsModel from '/models/rats.glb'
-import BobakModel from '/models/bobak.glb'
-import stationModel from '/models/station.glb'
-import pcModel from '/models/pc.glb'
-
-
-
-
-import islandScene from "/models/island_portfolio.glb";
 
 export function Island({
   isRotating,
@@ -21,26 +12,27 @@ export function Island({
   currentFocusPoint,
   ...props
 }) {
-  const islandRef = useRef();
-  // Get access to the Three.js renderer and viewport
-  const { gl, viewport } = useThree();
-  const { nodes, materials } = useGLTF(islandScene);
+const islandRef = useRef()
+const { gl, viewport } = useThree()
 
-  const ratsRef = useRef()
-  const { scene: ratsScene } = useGLTF(RatsModel)
+// main island (if this one is ALSO in public, same rule applies)
+const { nodes, materials } = useGLTF('/models/island_portfolio.glb')
 
-  const bobakRef = useRef()
-  const { scene: bobakScene } = useGLTF(BobakModel)
+const ratsRef = useRef()
+const { scene: ratsScene } = useGLTF('/models/rats.glb')
 
-  const pcRef = useRef()
-  const { scene: pcScene } = useGLTF(pcModel)
+const bobakRef = useRef()
+const { scene: bobakScene } = useGLTF('/models/bobak.glb')
 
+const pcRef = useRef()
+const { scene: pcScene } = useGLTF('/models/pc.glb')
 
+const stationRef = useRef()
+const { scene: stationScene, animations: stationAnimations } =
+  useGLTF('/models/station.glb')
 
+const { actions } = useAnimations(stationAnimations, stationRef)
 
-  const stationRef = useRef()
-  const { scene: stationScene, animations: stationAnimations } = useGLTF(stationModel)
-  const { actions } = useAnimations(stationAnimations, stationRef)
 
   useEffect(() => {
     if (!actions) return

@@ -1,13 +1,12 @@
 import { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
-import spaceshipScene from '/models/Spaceship.glb'
 import FireParticles from '../Components/FireParticles'
 import SpeedLines from '../Components/SpeedLines'
 
 const Spaceship = ({ isRotating, ...props }) => {
   const ref = useRef()
-  const { scene, animations } = useGLTF(spaceshipScene)
+  const { scene, animations } = useGLTF('/models/Spaceship.glb')
   const { actions } = useAnimations(animations, ref)
 
   useEffect(() => {
