@@ -1,18 +1,16 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-
 import { Home, About, Projects, Contact } from './pages';
 import Navbar from './Components/Navbar';
 
 const App = () => {
   return (
     <main className="bg-slate-300/2 min-h-screen">
-      <Router>
+      <Router basename="/3d_portfolio">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} /> {/* Landing page */}
-
+          <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router> 
@@ -21,3 +19,4 @@ const App = () => {
 }
 
 export default App
+
