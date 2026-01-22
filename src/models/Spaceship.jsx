@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
-import spaceshipScene from '../assets/3d/Spaceship.glb'
+import spaceshipScene from '/models/Spaceship.glb'
 import FireParticles from '../Components/FireParticles'
 import SpeedLines from '../Components/SpeedLines'
 

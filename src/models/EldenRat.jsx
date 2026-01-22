@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import scene from '../assets/3d/EldenRat.glb'
+import scene from '/models/EldenRat.glb'
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 

@@ -4,15 +4,15 @@ import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import RatsModel from '../assets/3d/rats.glb'
-import BobakModel from '../assets/3d/bobak.glb'
-import stationModel from '../assets/3d/station.glb'
-import pcModel from '../assets/3d/pc.glb'
-import woodModel from '../assets/3d/wood.glb'
+import RatsModel from '/models/rats.glb'
+import BobakModel from '/models/bobak.glb'
+import stationModel from '/models/station.glb'
+import pcModel from '/models/pc.glb'
+import woodModel from '/models/wood.glb'
 
 
 
-import islandScene from "../assets/3d/island_portfolio.glb";
+import islandScene from "/models/island_portfolio.glb";
 
 export function Island({
   isRotating,
