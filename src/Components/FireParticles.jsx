@@ -72,3 +72,5 @@ import * as THREE from 'three'
     </points>
   )
 }
+
+export default FireParticles

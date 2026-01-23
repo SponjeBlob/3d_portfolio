@@ -313,7 +313,7 @@ const { actions } = useAnimations(stationAnimations, stationRef)
             <primitive object={ratsScene} />
           </group>
 
-          <group ref={bobakRef} position={[0.4, -0.45, 0.3]} scale={[1.25, 1.25, 1.25]}>
+          <group ref={bobakRef} position={[-0.4, -0.48, 0.3]} scale={[1.25, 1.25, 1.25]}>
           <primitive object={bobakScene} />
           </group>
 
