@@ -3,12 +3,13 @@ import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import scene from '../assets/3d/EldenRat.glb'
 
 
 
 const EldenRat = (currentAnimation = 'Idle.001', ...props ) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/models/EldenRat.glb')
+  const { nodes, materials, animations } = useGLTF(scene)
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {

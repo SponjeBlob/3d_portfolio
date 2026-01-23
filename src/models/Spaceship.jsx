@@ -1,12 +1,11 @@
 import { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
-import FireParticles from '../Components/FireParticles'
-import SpeedLines from '../Components/SpeedLines'
+import spaceshipScene from '../assets/3d/Spaceship.glb'
 
 const Spaceship = ({ isRotating, ...props }) => {
   const ref = useRef()
-  const { scene, animations } = useGLTF('/models/Spaceship.glb')
+  const { scene, animations } = useGLTF(spaceshipScene)
   const { actions } = useAnimations(animations, ref)
 
   useEffect(() => {
@@ -22,14 +21,8 @@ const Spaceship = ({ isRotating, ...props }) => {
       <group ref={ref} {...props}>
         <primitive object={scene} />
 
-        {/* propeller */}
-        <FireParticles 
-          position={[0, 1.45, -0.8]} 
-          isActive={isRotating} // only active while rotating
-        />
       </group>
 
-      <SpeedLines isActive={isRotating} /> {/* still tied to rotation */}
     </>
   )
 }

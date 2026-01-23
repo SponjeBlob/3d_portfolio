@@ -1,9 +1,10 @@
-
 import { a } from "@react-spring/three";
 import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
+
+import islandScene from "../assets/3d/island_portfolio.glb";
 
 export function Island({
   isRotating,
@@ -12,37 +13,11 @@ export function Island({
   currentFocusPoint,
   ...props
 }) {
-const islandRef = useRef()
-const { gl, viewport } = useThree()
+  const islandRef = useRef();
+  // Get access to the Three.js renderer and viewport
+  const { gl, viewport } = useThree();
+  const { nodes, materials } = useGLTF(islandScene);
 
-// main island (if this one is ALSO in public, same rule applies)
-const { nodes, materials } = useGLTF('/models/island_portfolio.glb')
-
-const ratsRef = useRef()
-const { scene: ratsScene } = useGLTF('/models/rats.glb')
-
-const bobakRef = useRef()
-const { scene: bobakScene } = useGLTF('/models/bobak.glb')
-
-const pcRef = useRef()
-const { scene: pcScene } = useGLTF('/models/pc.glb')
-
-const stationRef = useRef()
-const { scene: stationScene, animations: stationAnimations } =
-  useGLTF('/models/station.glb')
-
-const { actions } = useAnimations(stationAnimations, stationRef)
-
-
-  useEffect(() => {
-    if (!actions) return
-
-    Object.values(actions).forEach((action) => {
-      action.reset().play()
-    })
-  }, [actions])
-
-  
 
 
   // Use a ref for the last mouse x position
@@ -294,7 +269,7 @@ const { actions } = useAnimations(stationAnimations, stationRef)
         castShadow
         receiveShadow
         geometry={nodes.platform_.geometry}
-        material={materials.platform}
+        material={materials['platform.001']}
         position={[0, 2, 1.54]}
         scale={[0.224, 0.026, 0.224]}
       />
@@ -307,33 +282,6 @@ const { actions } = useAnimations(stationAnimations, stationRef)
         rotation={[-Math.PI, 1.123, -Math.PI]}
         scale={[0.063, 0.063, 0.124]}
         />
-
-        {/* Rats model */}
-          <group ref={ratsRef} position={[0, 0, 0]} scale={[1, 1, 1]}>
-            <primitive object={ratsScene} />
-          </group>
-
-          <group ref={bobakRef} position={[-0.4, -0.48, 0.3]} scale={[1.25, 1.25, 1.25]}>
-          <primitive object={bobakScene} />
-          </group>
-
-          <group
-            ref={stationRef}
-            position={[0, 0.7, 0.3]}
-            scale={[0.8, 0.8, 0.8]}
-          >
-            <primitive object={stationScene} />
-          </group>
-
-          <group
-            ref={pcRef}
-            position={[0, 0, 0]}  // tweak this
-            scale={[1, 1, 1]}      // tweak this
-          >
-            <primitive object={pcScene} />
-          </group>
-
-  
 
 
 
