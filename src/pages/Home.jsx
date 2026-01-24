@@ -9,7 +9,6 @@ import HomeInfo from '../Components/HomeInfo';
 
 import space from '../assets/space.mp3'
 import { soundoff, soundon } from '../assets/icons';
-import rocket from '../assets/rocket.mp3'
 
 
 const Home = () => {
@@ -30,24 +29,6 @@ const Home = () => {
       audioRef.current.pause();
     }
   }, [isPlayingMusic])
-
-  const rocketRef = useRef(new Audio(rocket));
-  rocketRef.current.loop = true;
-  rocketRef.current.volume = 0.001;
-
-  useEffect(() => {
-    if (isRotating) {
-      rocketRef.current.play();
-    } else {
-      rocketRef.current.pause();
-      rocketRef.current.currentTime = 0;
-    }
-
-    return () => {
-      rocketRef.current.pause();
-    };
-  }, [isRotating]);
-
 
 
   const adjustIslandForScreenSize = () => {
