@@ -33,7 +33,7 @@ const Home = () => {
 
   const rocketRef = useRef(new Audio(rocket));
   rocketRef.current.loop = true;
-  rocketRef.current.volume = 0.01;
+  rocketRef.current.volume = 0.001;
 
   useEffect(() => {
     if (isRotating) {
