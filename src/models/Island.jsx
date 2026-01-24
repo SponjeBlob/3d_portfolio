@@ -1,10 +1,13 @@
 import { a } from "@react-spring/three";
 import { useEffect, useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
 
 import islandScene from "../assets/3d/island_portfolio.glb";
+
+import Beacon from '../models/Beacon'; 
+
 
 export function Island({
   isRotating,
@@ -283,6 +286,7 @@ export function Island({
         scale={[0.063, 0.063, 0.124]}
         />
 
+        <Beacon position={[0, 0, 0]} />
 
 
     </a.group>

@@ -58,8 +58,8 @@ const Home = () => {
   };
 
   const adjustSpaceshipForScreenSize = () => {
-    let scale = window.innerWidth < 768 ? [1.5, 1.5, 1.5] : [0.12, 0.12, 0.12];
-    let position = window.innerWidth < 768 ? [0, -1.5, 0] : [0.04, -0.29, 4.33];
+    let scale = window.innerWidth < 768 ? [0.105, 0.105, 0.105] : [0.12, 0.12, 0.12];
+    let position = window.innerWidth < 768 ? [0.03, -0.27, 4.33] : [0.04, -0.29, 4.33];
     return [scale, position];
   };
 
@@ -84,9 +84,7 @@ const Home = () => {
         camera={{ near: 0.1, far: 1000 }}
       >
         <Suspense fallback={<Loader />}>
-          <directionalLight position={[0, 0, 2]} intensity={1} />
-          <ambientLight intensity={1} />
-          <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
+
 
           {/* Pass handleLoaded to one or more models so loaded flips true */}
           <Sky isRotating={isRotating} onUpdate={handleLoaded} />
@@ -108,7 +106,7 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
-      <div className="absolute bottom-2 left-2">
+      <div className="absolute bottom-10 left-10">
         <img 
           src={!isPlayingMusic ? soundoff : soundon}
           alt="sound"

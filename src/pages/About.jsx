@@ -36,7 +36,7 @@ const About = () => {
 
             {/* Resume */}
             <a 
-              href="/Hugo_Resume.pdf" 
+              href="https://drive.google.com/file/d/1xP6VTiNzpOZeZ4I2dCZ3D-5n5q1do5IP/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"

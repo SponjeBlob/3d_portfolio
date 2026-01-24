@@ -23,7 +23,7 @@ const Projects = () => {
 
       <div className="mt-5 flex flex-col gap-3 text-white-500">
         <p>
-          Bellow I've split up my work into two sections, my 3d art and also my game development. Each link will direct you to either artstation or itch.io where i hold my favourite projects that i have made throughout the years.
+          Below, I’ve organized my work into two sections: 3D Art and Game Development. Each section highlights some of my favorite projects from over the years, reflecting my skills, creativity, and the progress I’ve made in both disciplines.
         </p>
       </div>
 

@@ -1,21 +1,21 @@
 import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
 
-  const FireParticles = ({ position = [0,0,0], count = 50, isActive = false }) => {
+const FireParticles = ({ position = [0,0,0], count = 20, isActive = false }) => {
   const pointsRef = useRef()
-  
+
+  // Precompute positions and velocities
   const particles = useMemo(() => {
     const positions = new Float32Array(count * 3)
     const velocities = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
-      positions[i*3] = (Math.random()-0.5)*0.05
-      positions[i*3+1] = (Math.random()-0.5)*0.05
-      positions[i*3+2] = 0
+      positions[i*3] = (Math.random() - 0.5) * 0.05 // x wiggle
+      positions[i*3+1] = (Math.random() - 0.5) * 0.05 // y wiggle
+      positions[i*3+2] = 0 // start at front of exhaust
 
-      velocities[i*3] = 0
-      velocities[i*3+1] = 0
-      velocities[i*3+2] = -(0.005 + Math.random()*0.005)
+      velocities[i*3] = 0 // no x movement
+      velocities[i*3+1] = 0 // no y movement
+      velocities[i*3+2] = -(0.007 + Math.random() * 0.008) // z speed slightly faster
     }
     return { positions, velocities }
   }, [count])
@@ -27,20 +27,20 @@ import * as THREE from 'three'
     const vel = particles.velocities
     const attr = pointsRef.current.geometry.attributes.position.array
 
-    // move particles in-place, update attribute array once
     for (let i = 0; i < count; i++) {
       const i3 = i*3
+
       pos[i3] += vel[i3]
       pos[i3+1] += vel[i3+1]
       pos[i3+2] += vel[i3+2]
 
-      if (pos[i3+2] < -0.25) {
-        pos[i3] = (Math.random()-0.5)*0.25
-        pos[i3+1] = (Math.random()-0.5)*0.1
+      // reset further so particles travel longer
+      if (pos[i3+2] < -0.5) {
+        pos[i3] = (Math.random() - 0.5) * 0.25
+        pos[i3+1] = (Math.random() - 0.5) * 0.1
         pos[i3+2] = 0
       }
 
-      // update attribute array directly
       attr[i3] = pos[i3]
       attr[i3+1] = pos[i3+1]
       attr[i3+2] = pos[i3+2]
