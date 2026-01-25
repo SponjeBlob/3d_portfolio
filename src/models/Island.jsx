@@ -21,6 +21,7 @@ export function Island({
   const { gl, viewport } = useThree();
   const { nodes, materials } = useGLTF(islandScene);
 
+  const hasInteracted = useRef(false);
 
 
   // Use a ref for the last mouse x position
@@ -152,6 +153,12 @@ export function Island({
 
   // This function is called on each frame update
   useFrame(() => {
+    
+    if (!hasInteracted.current && Math.abs(rotationSpeed.current) > 0.0005) {
+      hasInteracted.current = true;
+      window.dispatchEvent(new Event("island-rotated"));
+    }
+
     // If not rotating, apply damping to slow down the rotation (smoothly)
     if (!isRotating) {
       // Apply damping factor

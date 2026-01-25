@@ -21,6 +21,17 @@ const Home = () => {
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
   useEffect(() => {
+  const hideHint = () => {
+    const el = document.getElementById("rotate-hint");
+    if (el) el.style.opacity = "0"; // fades out
+  };
+
+  window.addEventListener("island-rotated", hideHint);
+  return () => window.removeEventListener("island-rotated", hideHint);
+}, []);
+
+  
+  useEffect(() => {
     if(isPlayingMusic) {
       audioRef.current.play();
     }
@@ -58,6 +69,18 @@ const Home = () => {
         <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
           <HomeInfo currentStage={currentStage} />
         </div>
+      )}
+
+      {loaded && (
+      <div
+        id="rotate-hint"
+        className="absolute bottom-36 left-1/2 z-20 
+             text-white text-sm md:text-base pointer-events-none
+             transition-opacity duration-700
+             animate-pulse-arrow"
+      >
+        ← click & drag →
+      </div>
       )}
 
       <Canvas 
