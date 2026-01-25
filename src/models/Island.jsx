@@ -153,18 +153,27 @@ export function Island({
 
   // This function is called on each frame update
 useFrame(() => {
-  // Trigger the hint fade when the user rotates enough
+  const isMobile = window.innerWidth < 768;
+
   if (!hasInteracted.current) {
-    const threshold = window.innerWidth < 768 ? 0.00000000000000001 : 0.0005; // lower threshold for mobile
-    if (Math.abs(rotationSpeed.current) > threshold) {
-      hasInteracted.current = true;
-      window.dispatchEvent(new Event("island-rotated"));
+    if (isMobile) {
+      // On mobile, any touch counts
+      if (isRotating) {
+        hasInteracted.current = true;
+        window.dispatchEvent(new Event("island-rotated"));
+      }
+    } else {
+      // On desktop, require actual rotation speed
+      if (Math.abs(rotationSpeed.current) > 0.0005) {
+        hasInteracted.current = true;
+        window.dispatchEvent(new Event("island-rotated"));
+      }
     }
   }
 
-  // Existing rotation damping logic
+  // --- your normal rotation / damping logic stays here ---
   if (!isRotating) {
-    rotationSpeed.current *= dampingFactor;
+    rotationSpeed.current *= 0.95;
     if (Math.abs(rotationSpeed.current) < 0.001) rotationSpeed.current = 0;
     islandRef.current.rotation.y += rotationSpeed.current;
   } else {
@@ -189,6 +198,7 @@ useFrame(() => {
     }
   }
 });
+
 
 
     return (
