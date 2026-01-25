@@ -155,7 +155,7 @@ export function Island({
 useFrame(() => {
   // Trigger the hint fade when the user rotates enough
   if (!hasInteracted.current) {
-    const threshold = window.innerWidth < 768 ? 0.00005 : 0.0005; // lower threshold for mobile
+    const threshold = window.innerWidth < 768 ? 0.0000002 : 0.0005; // lower threshold for mobile
     if (Math.abs(rotationSpeed.current) > threshold) {
       hasInteracted.current = true;
       window.dispatchEvent(new Event("island-rotated"));
